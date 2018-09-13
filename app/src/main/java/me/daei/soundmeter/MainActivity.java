@@ -5,6 +5,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -15,14 +16,23 @@ public class MainActivity extends AppCompatActivity {
 
     float volume = 10000;
     private SoundDiscView soundDiscView;
+    private TextView tvMin;
+    private TextView tvMax;
     private MyMediaRecorder mRecorder;
     private static final int msgWhat = 0x1001;
     private static final int refreshTime = 100;
+
+    private int min = -1;
+    private int max = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tvMin = findViewById(R.id.tvMin);
+        tvMax = findViewById(R.id.tvMax);
+        tvMin.setText("0 db");
+        tvMax.setText("0 db");
         mRecorder = new MyMediaRecorder();
     }
 
@@ -38,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
             if(volume > 0 && volume < 1000000) {
                 World.setDbCount(20 * (float)(Math.log10(volume)));  //将声压值转为分贝值
                 soundDiscView.refresh();
+                if(min == -1)
+                    min = (int) World.dbCount;
+                if(max == -1)
+                    max = (int) World.dbCount;
+
+                if(World.dbCount < min)
+                    min = (int) World.dbCount;
+                if(World.dbCount > max)
+                    max = (int) World.dbCount;
+
+                //refresh to TextView.
+                tvMax.setText(max + " db");
+                tvMin.setText(min + " db");
             }
             handler.sendEmptyMessageDelayed(msgWhat, refreshTime);
         }
