@@ -1,4 +1,4 @@
-package me.daei.soundmeter.widget;
+package com.chorm.lmt.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,9 +10,10 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import me.daei.soundmeter.R;
-import me.daei.soundmeter.ScreenUtil;
-import me.daei.soundmeter.World;
+import com.chorm.lmt.R;
+import com.chorm.lmt.ScreenUtil;
+import com.chorm.lmt.World;
+
 
 /**
  * Created by su on 2016/6/4.

@@ -1,4 +1,4 @@
-package me.daei.soundmeter;
+package com.chorm.lmt;
 
 import android.app.Activity;
 import android.content.Context;

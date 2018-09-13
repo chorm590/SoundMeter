@@ -1,18 +1,19 @@
-package me.daei.soundmeter;
+package com.chorm.lmt;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.io.File;
 
-import me.daei.soundmeter.widget.SoundDiscView;
+import com.chorm.lmt.widget.SoundDiscView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     float volume = 10000;
     private SoundDiscView soundDiscView;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 if(World.dbCount < min)
                     min = (int) World.dbCount;
                 if(World.dbCount > max)
-                    max = (int) World.dbCount;
+                    max = (int)World.dbCount;
 
                 //refresh to TextView.
                 tvMax.setText(max + " db");
